@@ -17,10 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     private ViewPager2 viewPager;
-    public static int currentFragmentIndex = 0;
     private final List<Fragment> fragments = new ArrayList<>();
+    private static MemoFragment memoFragment;
+    private static ConversionFragment conversionFragment;
+    public static int selectedFragmentID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fragments.add(new MemoFragment());
-        fragments.add(new ConversionFragment());
+        fragments.add(memoFragment = new MemoFragment());
+        fragments.add(conversionFragment = new ConversionFragment());
 
         viewPager = findViewById(R.id.viewPager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this, fragments);
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        selectedFragmentID = item.getItemId();
         if (item.getItemId() == R.id.memo) {
             viewPager.setCurrentItem(0, false);
             return true;
@@ -55,5 +57,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public static MemoFragment getMemoFragment() {
+        return memoFragment;
+    }
+
+    public static ConversionFragment getConversionFragment() {
+        return conversionFragment;
     }
 }

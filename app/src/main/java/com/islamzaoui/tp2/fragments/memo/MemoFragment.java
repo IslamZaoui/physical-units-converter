@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.islamzaoui.tp2.MainActivity;
 import com.islamzaoui.tp2.R;
 import com.islamzaoui.tp2.ViewPagerAdapter;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class MemoFragment extends Fragment {
 
     private final List<Fragment> fragments = new ArrayList<>();
+    private ViewPager2 memoViewPager;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,10 +32,27 @@ public class MemoFragment extends Fragment {
         fragments.add(new TemperatureFragment());
         fragments.add(new PowerFragment());
 
-        ViewPager2 quantityViewPager = view.findViewById(R.id.quantityViewPager);
+        memoViewPager = view.findViewById(R.id.quantityViewPager);
         ViewPagerAdapter quantityPagerAdapter = new ViewPagerAdapter(this, fragments);
-        quantityViewPager.setAdapter(quantityPagerAdapter);
+        memoViewPager.setAdapter(quantityPagerAdapter);
+        memoViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                try{
+                    boolean isConversionSelected = MainActivity.selectedFragmentID == R.id.conversion;
+                    MainActivity.getConversionFragment().getConversionViewPager().setCurrentItem(position, isConversionSelected);
+                }
+                catch (Exception ignored){
+
+                }
+            }
+        });
 
         return view;
+    }
+
+    public ViewPager2 getMemoViewPager() {
+        return memoViewPager;
     }
 }
