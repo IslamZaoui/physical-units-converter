@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="mass_units">
+        <item>Kilogram (kg)</item>
+        <item>Gram (g)</item>
+        <item>Milligram (mg)</item>
+        <item>Tonne (t)</item>
+        <item>Pound (lb)</item>
+        <item>Ounce (oz)</item>
+    </string-array>
+    <string-array name="volume_units">
+        <item>Liter (L)</item>
+        <item>Milliliter (mL)</item>
+        <item>Cubic meter (m³)</item>
+        <item>Cubic centimeter (cm³)</item>
+        <item>Cubic inch (in³)</item>
+        <item>Fluid ounce (fl oz)</item>
+        <item>Cup (cup)</item>
+        <item>Pint (pt)</item>
+        <item>Quart (qt)</item>
+        <item>Gallon (gal)</item>
+    </string-array>
+    <string-array name="distance_units">
+        <item>Meter (m)</item>
+        <item>Centimeter (cm)</item>
+        <item>Kilometer (km)</item>
+        <item>Millimeter (mm)</item>
+        <item>Inch (in)</item>
+        <item>Foot (ft)</item>
+        <item>Yard (yd)</item>
+        <item>Mile (mi)</item>
+        <item>Nautical mile (nmi)</item>
+    </string-array>
+    <string-array name="power_units">
+        <item>Watt (W)</item>
+        <item>Kilowatt (kW)</item>
+        <item>Megawatt (MW)</item>
+        <item>Gigawatt (GW)</item>
+        <item>Milliwatt (mW)</item>
+        <item>Horsepower (hp)</item>
+        <item>Foot-pound per second (ft⋅lbf/s)</item>
+        <item>BTU per hour (BTU/h)</item>
+    </string-array>
+    <string-array name="energy_units">
+        <item>Joule (J)</item>
+        <item>Kilojoule (kJ)</item>
+        <item>Calorie (cal)</item>
+        <item>Kilocalorie (kcal)</item>
+        <item>Watt-hour (Wh)</item>
+        <item>Kilowatt-hour (kWh)</item>
+        <item>British thermal unit (BTU)</item>
+        <item>Foot-pound (ft⋅lbf)</item>
+    </string-array>
+    <string-array name="temperature_units">
+        <item>Celsius (°C)</item>
+        <item>Fahrenheit (°F)</item>
+        <item>Kelvin (K)</item>
+    </string-array>
+</resources>

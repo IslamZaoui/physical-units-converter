@@ -1,34 +1,44 @@
 package com.islamzaoui.tp2;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.islamzaoui.tp2.fragments.conversion.ConversionFragment;
 import com.islamzaoui.tp2.fragments.memo.MemoFragment;
 
-public class ViewPagerAdapter extends FragmentStateAdapter {
+import java.util.List;
 
-    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+public class ViewPagerAdapter extends FragmentStateAdapter {
+    private List<Fragment> fragments;
+
+    public ViewPagerAdapter(@NonNull ConversionFragment fragmentActivity, List<Fragment> fragments) {
         super(fragmentActivity);
+        this.fragments = fragments;
+    }
+
+    public ViewPagerAdapter(@NonNull MemoFragment fragmentActivity, List<Fragment> fragments) {
+        super(fragmentActivity);
+        this.fragments = fragments;
+    }
+
+    public ViewPagerAdapter(@NonNull AppCompatActivity Activity, List<Fragment> fragments) {
+        super(Activity);
+        this.fragments = fragments;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position) {
-            case 0:
-                return new MemoFragment();
-            case 1:
-                return new ConversionFragment();
-            default:
-                return null;
-        }
+        if (fragments.isEmpty())
+            return null;
+
+        return fragments.get(position);
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return fragments.size();
     }
 }

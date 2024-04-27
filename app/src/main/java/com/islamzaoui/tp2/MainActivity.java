@@ -7,12 +7,20 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.islamzaoui.tp2.fragments.conversion.ConversionFragment;
+import com.islamzaoui.tp2.fragments.memo.MemoFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager2 viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
+    public static int currentFragmentIndex = 0;
+    private final List<Fragment> fragments = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +30,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        fragments.add(new MemoFragment());
+        fragments.add(new ConversionFragment());
+
         viewPager = findViewById(R.id.viewPager);
-        viewPagerAdapter = new ViewPagerAdapter(this);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this, fragments);
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setUserInputEnabled(false);
     }
@@ -36,12 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.memo) {
-            viewPager.setCurrentItem(0);
+        if (item.getItemId() == R.id.memo) {
+            viewPager.setCurrentItem(0, false);
             return true;
-        }
-        else if(item.getItemId() == R.id.conversion) {
-            viewPager.setCurrentItem(1);
+        } else if (item.getItemId() == R.id.conversion) {
+            viewPager.setCurrentItem(1, false);
             return true;
         }
         return super.onOptionsItemSelected(item);
