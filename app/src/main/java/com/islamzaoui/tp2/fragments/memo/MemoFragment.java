@@ -41,7 +41,7 @@ public class MemoFragment extends Fragment {
                 super.onPageSelected(position);
                 try{
                     boolean isConversionSelected = MainActivity.selectedFragmentID == R.id.conversion;
-                    MainActivity.getConversionFragment().getConversionViewPager().setCurrentItem(position, isConversionSelected);
+                    setMemoViewPagerIndex(position, isConversionSelected);
                 }
                 catch (Exception ignored){
 
@@ -50,6 +50,25 @@ public class MemoFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(memoViewPager != null){
+            memoViewPager.unregisterOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                @Override
+                public void onPageSelected(int position) {
+                    super.onPageSelected(position);
+                }
+            });
+        }
+    }
+
+    private void setMemoViewPagerIndex(int position, boolean isConversionSelected){
+        if(MainActivity.getConversionFragment() != null && MainActivity.getConversionFragment().getConversionViewPager() != null){
+            MainActivity.getConversionFragment().getConversionViewPager().setCurrentItem(position, isConversionSelected);
+        }
     }
 
     public ViewPager2 getMemoViewPager() {

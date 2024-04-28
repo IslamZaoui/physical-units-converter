@@ -34,19 +34,39 @@ public class ConversionFragment extends Fragment {
         conversionViewPager = view.findViewById(R.id.quantityViewPager);
         ViewPagerAdapter quantityPagerAdapter = new ViewPagerAdapter(this, fragments);
         conversionViewPager.setAdapter(quantityPagerAdapter);
+        conversionViewPager.setCurrentItem(MainActivity.getMemoFragment().getMemoViewPager().getCurrentItem(), false);
         conversionViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 try{
                     boolean isMemoSelected = MainActivity.selectedFragmentID == R.id.memo;
-                    MainActivity.getMemoFragment().getMemoViewPager().setCurrentItem(position, isMemoSelected);
+                    setConversionViewPagerIndex(position, isMemoSelected);
                 }
                 catch (Exception ignored){}
             }
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(conversionViewPager != null){
+            conversionViewPager.unregisterOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                @Override
+                public void onPageSelected(int position) {
+                    super.onPageSelected(position);
+                }
+            });
+        }
+    }
+
+    private void setConversionViewPagerIndex(int position, boolean isMemoSelected){
+        if(MainActivity.getMemoFragment() != null && MainActivity.getMemoFragment().getMemoViewPager() != null){
+            MainActivity.getMemoFragment().getMemoViewPager().setCurrentItem(position, isMemoSelected);
+        }
     }
 
     public ViewPager2 getConversionViewPager() {
