@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private static MemoFragment memoFragment;
     private static ConversionFragment conversionFragment;
     public static int selectedFragmentID;
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        this.menu = menu.getItem(0).getSubMenu();
         return true;
     }
 
@@ -51,9 +53,13 @@ public class MainActivity extends AppCompatActivity {
         selectedFragmentID = item.getItemId();
         if (item.getItemId() == R.id.memo) {
             viewPager.setCurrentItem(0, false);
+            item.setIcon(R.drawable.baseline_arrow);
+            menu.getItem(1).setIcon(null);
             return true;
         } else if (item.getItemId() == R.id.conversion) {
             viewPager.setCurrentItem(1, false);
+            item.setIcon(R.drawable.baseline_arrow);
+            menu.getItem(0).setIcon(null);
             return true;
         }
         return super.onOptionsItemSelected(item);

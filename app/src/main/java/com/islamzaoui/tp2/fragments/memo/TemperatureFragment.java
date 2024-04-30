@@ -29,9 +29,9 @@ public class TemperatureFragment extends Fragment {
         temperatureUnitsList = view.findViewById(R.id.UnitsList);
         temperatureUnits = new ArrayList<>();
 
-        temperatureUnits.add("Celsius (°C)");
-        temperatureUnits.add("Fahrenheit (°F)");
-        temperatureUnits.add("Kelvin (K)");
+        temperatureUnits.add("Celsius (°C) - Base SI unit");
+        temperatureUnits.add("Fahrenheit (°F) = 32 °C");
+        temperatureUnits.add("Kelvin (K) = 273.15 °C");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, temperatureUnits);
         temperatureUnitsList.setAdapter(adapter);

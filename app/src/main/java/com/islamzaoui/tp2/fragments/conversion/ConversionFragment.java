@@ -35,6 +35,7 @@ public class ConversionFragment extends Fragment {
         ViewPagerAdapter quantityPagerAdapter = new ViewPagerAdapter(this, fragments);
         conversionViewPager.setAdapter(quantityPagerAdapter);
         conversionViewPager.setCurrentItem(MainActivity.getMemoFragment().getMemoViewPager().getCurrentItem(), false);
+
         conversionViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {

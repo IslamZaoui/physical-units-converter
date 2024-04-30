@@ -1,6 +1,7 @@
 package com.islamzaoui.tp2;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -34,11 +35,20 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
         if (fragments.isEmpty())
             return null;
 
-        return fragments.get(position);
+        return fragments.get(position % fragments.size());
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return (position % fragments.size());
     }
 
     @Override
     public int getItemCount() {
-        return fragments.size();
+        return Integer.MAX_VALUE;
+    }
+
+    public int getCenterPage(int position) {
+        return Integer.MAX_VALUE / 2 + position;
     }
 }

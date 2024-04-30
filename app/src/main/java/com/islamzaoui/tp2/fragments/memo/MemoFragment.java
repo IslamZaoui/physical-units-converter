@@ -35,6 +35,8 @@ public class MemoFragment extends Fragment {
         memoViewPager = view.findViewById(R.id.quantityViewPager);
         ViewPagerAdapter quantityPagerAdapter = new ViewPagerAdapter(this, fragments);
         memoViewPager.setAdapter(quantityPagerAdapter);
+        memoViewPager.setCurrentItem(quantityPagerAdapter.getCenterPage(0), false);
+
         memoViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
